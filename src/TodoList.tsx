@@ -1,17 +1,19 @@
 import {Btn} from "./Btn";
 import {TodoListHeader} from "./TodoListHeader";
+import {FilterValuesType} from "./App";
 
 type TodoListPropsType = {
     title: string
     tasks: Array<TaskType>
     removeTask: (taskId: number)=> void
+    changeTodoListFilter: (filter: FilterValuesType) => void
 }
 export type TaskType = {
     id: number
     title: string
     isDone: boolean
 }
-export const Todolist = ({title, tasks, removeTask}: TodoListPropsType) => {
+export const Todolist = ({title, tasks, removeTask, changeTodoListFilter}: TodoListPropsType) => {
 
     const tasksList = tasks.length === 0 ?
         <span>Список пуст</span>
@@ -40,9 +42,9 @@ export const Todolist = ({title, tasks, removeTask}: TodoListPropsType) => {
 
             </ul>
             <div>
-                <Btn title={"All"}/>
-                <Btn title={"Active"}/>
-                <Btn title={"Completed"}/>
+                <Btn title={"All"} onClickHaandler={() => changeTodoListFilter("all")}/>
+                <Btn title={"Active"} onClickHaandler={() => changeTodoListFilter("active")}/>
+                <Btn title={"Completed"} onClickHaandler={() => changeTodoListFilter("completed")}/>
             </div>
         </div>
     )
