@@ -14,3 +14,15 @@
 li {
   list-style-type:  none;
 }
+.task-done {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+.btn-active {
+  background-color: gold;
+  border: 2px solid antiquewhite;
+}
+.input-error {
+  border: 2px solid red;
+  outline: none;
+}
