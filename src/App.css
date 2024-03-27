@@ -6,23 +6,23 @@
 .App > div {
   margin-right: 50px;
 }
-.todolist {
-  background-color: #e05ee3;
-  border-radius: 5px;
-  padding: 15px;
+
+.error {
+  border: red 1px solid;
 }
-li {
-  list-style-type:  none;
+
+.error-message {
+  color: red;
 }
-.task-done {
+
+.active-filter {
+  background-color: lightgreen;
+}
+
+.is-done {
   opacity: 0.5;
-  text-decoration: line-through;
 }
-.btn-active {
-  background-color: gold;
-  border: 2px solid antiquewhite;
-}
-.input-error {
-  border: 2px solid red;
-  outline: none;
+.todolist-title-container {
+  display: flex;
+  align-items: center;
 }
