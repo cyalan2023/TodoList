@@ -1,5 +1,8 @@
-import {Button} from "./Button";
-import {ChangeEvent, KeyboardEvent, useState} from "react";
+import React, {ChangeEvent, KeyboardEvent, useState} from "react";
+import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import AddBoxIcon from "@mui/icons-material/AddBox"
+
 
 type Props = {
     addItem: (title: string) => void
@@ -8,11 +11,11 @@ export const AddItemForm = ({addItem}: Props) => {
     const [taskTitle, setTaskTitle] = useState('')
     const [error, setError] = useState<string | null>(null)
 
-    const changeTaskTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const changeItemHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setTaskTitle(event.currentTarget.value)
     }
 
-    const addTaskHandler = () => {
+    const addItemHandler = () => {
         if (taskTitle.trim() !== '') {
             addItem(taskTitle.trim())
             setTaskTitle('')
@@ -21,22 +24,37 @@ export const AddItemForm = ({addItem}: Props) => {
         }
     }
 
-    const addTaskOnKeyUpHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    const addItemOnKeyUpHandler = (event: KeyboardEvent<HTMLInputElement>) => {
         setError(null)
         if (event.key === 'Enter') {
-            addTaskHandler()
+            addItemHandler()
         }
     }
     return (
         <div>
-            <input
-                className={error ? 'error' : ''}
+            <TextField
+                label="Enter a title"
+                variant={'outlined'}
+                error={!!error}
                 value={taskTitle}
-                onChange={changeTaskTitleHandler}
-                onKeyUp={addTaskOnKeyUpHandler}
+                size={'small'}
+                onChange={changeItemHandler}
+                onKeyUp={addItemOnKeyUpHandler}
+                helperText={error}
             />
-            <Button title={'+'} onClick={addTaskHandler}/>
-            {error && <div className={'error-message'}>{error}</div>}
+            {/*<input*/}
+            {/*    className={error ? 'error' : ''}*/}
+            {/*    value={taskTitle}*/}
+            {/*    onChange={changeItemHandler}*/}
+            {/*    onKeyUp={addItemOnKeyUpHandler}*/}
+            {/*/>*/}
+            {/*<Button title={'+'} onClick={addItemHandler}/>*/}
+            {/*<Button variant="contained"  onClick={addItemHandler}>+</Button>*/}
+            {/*{error && <div className={'error-message'}>{error}</div>}*/}
+            <IconButton onClick={addItemHandler} color={'primary'}>
+                <AddBoxIcon />
+            </IconButton>
+
         </div>
     );
 };
